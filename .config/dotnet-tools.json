@@ -7,6 +7,12 @@
       "commands": [
         "dotnet-msidentity"
       ]
+    },
+    "grate": {
+      "version": "1.4.0",
+      "commands": [
+        "grate"
+      ]
     }
   }
 }

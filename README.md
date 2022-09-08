@@ -9,3 +9,11 @@ A typical directory entry has the following information:
 * Location
 * Email
 * Phone Number(s)
+
+## Requirements
+- LocalDB is installed named as localdb (https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver16#create-and-connect-to-a-named-instance)
+
+## Local Setup
+
+- Execute `.\setup` from powershell to install needed utilities.
+- Execute `.\psake` from powershell to setup initial solution and run integration tests.
