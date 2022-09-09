@@ -6,7 +6,7 @@ namespace Rolodex.DataStore
 {
     public class RolodexContext : DbContext
     {
-        private IDbContextTransaction _currentTransaction;
+        private IDbContextTransaction? _currentTransaction;
 
         public RolodexContext(DbContextOptions<RolodexContext> options) : base(options)
         {
