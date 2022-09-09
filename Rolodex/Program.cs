@@ -15,6 +15,8 @@ builder.Services.AddAuthorization(options =>
     options.FallbackPolicy = options.DefaultPolicy;
 });
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddMediatR(typeof(Program));
 
 builder.Services.AddRazorPages()
