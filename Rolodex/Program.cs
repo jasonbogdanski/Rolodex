@@ -1,7 +1,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Rolodex.DataStore;
+using Rolodex.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +18,17 @@ builder.Services.AddAuthorization(options =>
     options.FallbackPolicy = options.DefaultPolicy;
 });
 
+builder.Services.AddDbContext<RolodexContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddMediatR(typeof(Program));
 
-builder.Services.AddRazorPages()
+builder.Services.AddRazorPages(opt =>
+    {
+        opt.Conventions.ConfigureFilter(new DbContextTransactionPageFilter());
+    })
     .AddMicrosoftIdentityUI();
 
 var app = builder.Build();
