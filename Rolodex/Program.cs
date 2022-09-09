@@ -30,6 +30,7 @@ builder.Services.AddMediatR(typeof(Program));
 builder.Services.AddRazorPages(opt =>
     {
         opt.Conventions.ConfigureFilter(new DbContextTransactionPageFilter());
+        opt.Conventions.ConfigureFilter(new ValidatorPageFilter());
     })
     .AddMicrosoftIdentityUI();
 
