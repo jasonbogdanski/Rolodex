@@ -1,5 +1,6 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using HtmlTags;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Rolodex.DataStore;
 using Rolodex.Infrastructure;
+using Rolodex.Infrastructure.Tags;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,8 @@ builder.Services.AddDbContext<RolodexContext>(options =>
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddMediatR(typeof(Program));
+
+builder.Services.AddHtmlTags(new TagConventions());
 
 builder.Services.AddRazorPages(opt =>
     {

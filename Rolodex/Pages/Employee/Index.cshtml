@@ -38,19 +38,19 @@
         {
             <tr>
                 <td>
-                    @item.Id
+                    <display-tag for="Data.Employees[rowIndex].Id" />
                 </td>
                 <td>
-                    @item.FirstName
+                    <display-tag for="Data.Employees[rowIndex].FirstName" />
                 </td>
                 <td>
-                    @item.LastName
+                    <display-tag for="Data.Employees[rowIndex].LastName" />
                 </td>
                 <td>
-                    @item.JobTitle
+                    <display-tag for="Data.Employees[rowIndex].JobTitle" />
                 </td>
                 <td>
-                    @item.Email
+                    <display-tag for="Data.Employees[rowIndex].Email" />
                 </td>
                 <td>
                     <a asp-page="Edit" asp-route-id="@item.Id">Edit</a> |
