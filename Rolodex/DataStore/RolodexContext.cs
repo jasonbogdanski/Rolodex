@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Rolodex.Models;
 
 namespace Rolodex.DataStore
 {
@@ -11,9 +12,11 @@ namespace Rolodex.DataStore
         public RolodexContext(DbContextOptions<RolodexContext> options) : base(options)
         {
         }
+
+        public DbSet<Employee> Employees { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Employee>().ToTable("Employee");
         }
 
         public async Task BeginTransactionAsync()
