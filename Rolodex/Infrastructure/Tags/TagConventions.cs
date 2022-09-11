@@ -19,7 +19,7 @@ public class TagConventions : HtmlConventionRegistry
         Editors.IfPropertyIs<byte[]>().ModifyWith(m => m.CurrentTag.Value(Convert.ToBase64String(m.Value<byte[]>())));
         Editors.IfPropertyIs<byte[]>().BuildBy(a => new HiddenTag());
 
-        Labels.Always.AddClass("control-label");
+        Labels.Always.AddClass("form-label");
         Labels.ModifyForAttribute<DisplayAttribute>((t, a) => t.Text(a.Name));
 
         Labels

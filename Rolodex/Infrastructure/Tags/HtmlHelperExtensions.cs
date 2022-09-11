@@ -46,7 +46,7 @@ public static class HtmlHelperExtensions
         inputModifier ??= _ => { };
 
         var divTag = new HtmlTag("div");
-        divTag.AddClass("form-group");
+        divTag.AddClass("mb-3");
 
         var labelTag = helper.Label(expression);
         labelModifier(labelTag);

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Rolodex.Pages.Employee;
 
 namespace Rolodex.Models
 {
@@ -19,5 +20,13 @@ namespace Rolodex.Models
 
         [StringLength(255)]
         public string Email { get; set; } = null!;
+
+        public void Handle(CreateEdit.Command message)
+        {
+            FirstName = message.FirstName;
+            LastName = message.LastName;
+            JobTitle = message.JobTitle;
+            Email = message.Email;
+        }
     }
 }

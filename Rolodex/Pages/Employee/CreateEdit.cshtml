@@ -1,10 +1,10 @@
 ﻿@page
-@model Employee.Create
+@model Employee.CreateEdit
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = Model.Data.Id == null ? "Create" : "Edit";
 }
 
-<h2>Create</h2>
+<h2>@(Model.Data.Id == null ? "Create" : "Edit")</h2>
 
 <h4>Employee</h4>
 <hr />
@@ -12,18 +12,19 @@
     <div class="col-md-4">
         <form method="post">
             @Html.ValidationDiv()
+            @Html.HiddenFor(m => m.Data.Id)
             @Html.FormBlock(m => m.Data.FirstName)
             @Html.FormBlock(m => m.Data.LastName)
             @Html.FormBlock(m => m.Data.JobTitle)
             @Html.FormBlock(m => m.Data.Email)
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+<div class="row">
     <a asp-page="Index">Back to List</a>
 </div>
 
