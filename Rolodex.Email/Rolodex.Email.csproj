@@ -14,4 +14,8 @@
     <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="3.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Rolodex.Messages\Rolodex.Messages.csproj" />
+  </ItemGroup>
+
 </Project>
