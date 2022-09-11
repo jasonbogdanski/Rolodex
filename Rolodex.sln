@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rolodex.IntegrationTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rolodex.Email", "Rolodex.Email\Rolodex.Email.csproj", "{B86BB88F-D208-4E96-890B-3BB8DB609699}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rolodex.Messages", "Rolodex.Messages\Rolodex.Messages.csproj", "{D97ACF94-8ABA-43FE-9C61-737F5D0E53FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B86BB88F-D208-4E96-890B-3BB8DB609699}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B86BB88F-D208-4E96-890B-3BB8DB609699}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B86BB88F-D208-4E96-890B-3BB8DB609699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D97ACF94-8ABA-43FE-9C61-737F5D0E53FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D97ACF94-8ABA-43FE-9C61-737F5D0E53FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D97ACF94-8ABA-43FE-9C61-737F5D0E53FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D97ACF94-8ABA-43FE-9C61-737F5D0E53FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
