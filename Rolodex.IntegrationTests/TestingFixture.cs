@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Rolodex.DataStore;
 using Rolodex.Models;
 
@@ -34,13 +34,14 @@ public class TestingFixture
         {
             builder.ConfigureServices(services =>
             {
-                builder.ConfigureAppConfiguration((_, configBuilder) =>
-                {
-                    configBuilder.AddInMemoryCollection(new Dictionary<string, string>
-                    {
-                        {"ConnectionStrings:DefaultConnection", ConnectionString }
-                    });
-                });
+                var descriptor = services.SingleOrDefault(
+                    d => d.ServiceType ==
+                         typeof(DbContextOptions<RolodexContext>));
+
+                if (descriptor != null) services.Remove(descriptor);
+
+                services.AddDbContext<RolodexContext>(options =>
+                    options.UseSqlServer(ConnectionString));
             });
 
             builder.ConfigureTestServices(services =>
