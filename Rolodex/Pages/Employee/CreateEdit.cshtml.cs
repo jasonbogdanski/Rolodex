@@ -59,6 +59,7 @@ namespace Rolodex.Pages.Employee
                 RuleFor(m => m.LastName).NotNull().Length(1, 255);
                 RuleFor(m => m.JobTitle).NotNull().Length(1, 255);
                 RuleFor(m => m.Email).NotNull().EmailAddress().Length(1, 255);
+                RuleFor(m => m.CompanyBranch).NotNull();
             }
         }
 
@@ -107,6 +108,7 @@ namespace Rolodex.Pages.Employee
             public string LastName { get; init; } = null!;
             public string JobTitle { get; init; } = null!;
             public string Email { get; init; } = null!;
+            public Models.CompanyBranch CompanyBranch { get; init; } = null!;
         }
 
         public class CommandHandler : IRequestHandler<Command, int>

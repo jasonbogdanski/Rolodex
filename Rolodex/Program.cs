@@ -38,6 +38,8 @@ builder.Services.AddRazorPages(opt =>
     })
     .AddMicrosoftIdentityUI();
 
+builder.Services.AddMvc(opt => opt.ModelBinderProviders.Insert(0, new EntityModelBinderProvider()));
+
 builder.Services.AddFluentValidationAutoValidation(config =>
 {
     config.DisableDataAnnotationsValidation = true;

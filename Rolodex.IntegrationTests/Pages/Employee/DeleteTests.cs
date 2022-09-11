@@ -1,6 +1,7 @@
 ﻿using Rolodex.Pages.Employee;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Rolodex.Models;
 
 namespace Rolodex.IntegrationTests.Pages.Employee;
 
@@ -14,12 +15,22 @@ public class DeleteTests
     [Fact]
     public async Task Should_delete_employee()
     {
+        var branch = new CompanyBranch
+        {
+            Name = "Test Branch",
+            City = "Akron",
+            State = "Ohio"
+        };
+
+        await _fixture.InsertAsync(branch);
+
         var command = new CreateEdit.Command
         {
             FirstName = "George",
             LastName = "Smith",
             JobTitle = "Accountant",
-            Email = "test@test.com"
+            Email = "test@test.com",
+            CompanyBranch = branch
         };
 
         var id = await _fixture.SendAsync(command);

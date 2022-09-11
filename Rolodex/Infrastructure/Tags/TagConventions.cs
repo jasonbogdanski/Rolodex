@@ -26,6 +26,7 @@ public class TagConventions : HtmlConventionRegistry
             .Always
             .ModifyWith(er => er.CurrentTag.Text(er.CurrentTag.Text().Replace("Data ", "")));
 
+        Editors.BuilderPolicy<CompanyBranchSelectElementBuilder>();
         DisplayLabels.Always.BuildBy<DefaultDisplayLabelBuilder>();
         DisplayLabels.ModifyForAttribute<DisplayAttribute>((t, a) => t.Text(a.Name));
         Displays.IfPropertyIs<DateTime>().ModifyWith(m => m.CurrentTag.Text(m.Value<DateTime>().ToShortDateString()));

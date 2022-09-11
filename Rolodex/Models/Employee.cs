@@ -21,12 +21,16 @@ namespace Rolodex.Models
         [StringLength(255)]
         public string Email { get; set; } = null!;
 
+        [Required]
+        public CompanyBranch CompanyBranch { get; set; } = null!;
+
         public void Handle(CreateEdit.Command message)
         {
             FirstName = message.FirstName;
             LastName = message.LastName;
             JobTitle = message.JobTitle;
             Email = message.Email;
+            CompanyBranch = message.CompanyBranch;
         }
     }
 }
