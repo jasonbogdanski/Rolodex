@@ -94,22 +94,22 @@ public class TestingFixture
     }
 
     public Task ExecuteDbContextAsync(Func<RolodexContext, Task> action)
-        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>()));
+        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>()!));
 
     public Task ExecuteDbContextAsync(Func<RolodexContext, ValueTask> action)
-        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>()).AsTask());
+        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>()!).AsTask());
 
     public Task ExecuteDbContextAsync(Func<RolodexContext, IMediator, Task> action)
-        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>(), sp.GetService<IMediator>()));
+        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>()!, sp.GetService<IMediator>()!));
 
     public Task<T> ExecuteDbContextAsync<T>(Func<RolodexContext, Task<T>> action)
-        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>()));
+        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>()!));
 
     public Task<T> ExecuteDbContextAsync<T>(Func<RolodexContext, ValueTask<T>> action)
-        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>()).AsTask());
+        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>()!).AsTask());
 
     public Task<T> ExecuteDbContextAsync<T>(Func<RolodexContext, IMediator, Task<T>> action)
-        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>(), sp.GetService<IMediator>()));
+        => ExecuteScopeAsync(sp => action(sp.GetService<RolodexContext>()!, sp.GetService<IMediator>()!));
 
     public Task InsertAsync<T>(params T[] entities) where T : class
     {
@@ -181,7 +181,7 @@ public class TestingFixture
     public Task<T> FindAsync<T>(int id)
         where T : class, IEntity
     {
-        return ExecuteDbContextAsync(db => db.Set<T>().FindAsync(id).AsTask());
+        return ExecuteDbContextAsync(db => db.Set<T>().FindAsync(id).AsTask())!;
     }
 
     public Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request)

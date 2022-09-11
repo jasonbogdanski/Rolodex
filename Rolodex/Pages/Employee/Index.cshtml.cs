@@ -12,7 +12,7 @@ namespace Rolodex.Pages.Employee
     {
         private readonly IMediator _mediator;
         public Index(IMediator mediator) => _mediator = mediator;
-        public Result Data { get; private set; }
+        public Result Data { get; private set; } = null!;
 
         public async Task OnGetAsync() => Data = await _mediator.Send(new Query());
 
@@ -21,15 +21,15 @@ namespace Rolodex.Pages.Employee
         }
         public record Result
         {
-            public List<Employee> Employees { get; init; }
+            public List<Employee> Employees { get; init; } = null!;
 
             public record Employee
             {
                 public int Id { get; init; }
-                public string FirstName { get; init; }
-                public string LastName { get; init; }
-                public string JobTitle { get; init; }
-                public string Email { get; init; }
+                public string FirstName { get; init; } = null!;
+                public string LastName { get; init; } = null!;
+                public string JobTitle { get; init; } = null!;
+                public string Email { get; init; } = null!;
             }
         }
 

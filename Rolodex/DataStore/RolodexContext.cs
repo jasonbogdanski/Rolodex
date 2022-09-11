@@ -13,7 +13,8 @@ namespace Rolodex.DataStore
         {
         }
 
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Employee> Employees { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Employee>().ToTable("Employee");
