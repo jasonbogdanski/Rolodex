@@ -5,7 +5,9 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rolodex", "Rolodex\Rolodex.csproj", "{C6DB1AFC-7264-4FA1-BEEB-5EC46BA3BCF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rolodex.IntegrationTests", "Rolodex.IntegrationTests\Rolodex.IntegrationTests.csproj", "{D4354652-E276-49B3-A134-3BC6932FC776}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rolodex.IntegrationTests", "Rolodex.IntegrationTests\Rolodex.IntegrationTests.csproj", "{D4354652-E276-49B3-A134-3BC6932FC776}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rolodex.Email", "Rolodex.Email\Rolodex.Email.csproj", "{B86BB88F-D208-4E96-890B-3BB8DB609699}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D4354652-E276-49B3-A134-3BC6932FC776}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4354652-E276-49B3-A134-3BC6932FC776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4354652-E276-49B3-A134-3BC6932FC776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B86BB88F-D208-4E96-890B-3BB8DB609699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86BB88F-D208-4E96-890B-3BB8DB609699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86BB88F-D208-4E96-890B-3BB8DB609699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86BB88F-D208-4E96-890B-3BB8DB609699}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
