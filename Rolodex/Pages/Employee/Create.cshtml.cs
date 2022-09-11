@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Rolodex.DataStore;
+using Rolodex.Infrastructure;
 
 namespace Rolodex.Pages.Employee
 {
