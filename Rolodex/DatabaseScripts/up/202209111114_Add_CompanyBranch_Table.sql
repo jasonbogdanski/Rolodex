@@ -1,0 +1,37 @@
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CompanyBranch](
+	[CompanyBranchID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](255) NOT NULL,
+	[City] [nvarchar](255) NOT NULL,
+	[State] [nvarchar](255) NOT NULL,
+ CONSTRAINT [PK_CompanyBranch] PRIMARY KEY CLUSTERED 
+(
+	[CompanyBranchID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+ALTER TABLE dbo.CompanyBranch SET (LOCK_ESCALATION = TABLE)
+GO
+    ALTER TABLE dbo.Employee ADD
+	CompanyBranchId int NULL
+GO
+ALTER TABLE dbo.Employee ADD CONSTRAINT
+	FK_Employee_CompanyBranch FOREIGN KEY
+	(
+	CompanyBranchId
+	) REFERENCES dbo.CompanyBranch
+	(
+	CompanyBranchID
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Employee SET (LOCK_ESCALATION = TABLE)
+GO

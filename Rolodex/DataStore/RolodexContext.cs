@@ -14,10 +14,12 @@ namespace Rolodex.DataStore
         }
 
         public DbSet<Employee> Employees { get; set; } = null!;
+        public DbSet<CompanyBranch> CompanyBranches { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Employee>().ToTable("Employee");
+            modelBuilder.Entity<CompanyBranch>().ToTable("CompanyBranch");
         }
 
         public async Task BeginTransactionAsync()
