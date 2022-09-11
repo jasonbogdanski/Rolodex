@@ -4,55 +4,37 @@
 // Write your JavaScript code.
 
 var highlightFields = function (response) {
-
     $.each(response, function (propName, val) {
         var nameSelector = '[name = "' + propName.replace(/(:|\.|\[|\])/g, "\\$1") + '"]',
             idSelector = '#' + propName.replace(/(:|\.|\[|\])/g, "\\$1");
         var $el = $(nameSelector) || $(idSelector);
 
         if (val.Errors.length > 0) {
-            $el.addClass('is-invalid');
+            $.each(val.Errors, function (index, error) {
+                $el.addClass('is-invalid');
+                const $errorMessage = $('<div></div>').addClass('invalid-feedback').text(error.ErrorMessage);
+                const $wrapper = $el.closest('.form-group');
+                $errorMessage.appendTo($wrapper);
+            })
         } else {
             $el.removeClass('is-invalid');
         }
     });
 };
 
+var clearErrors = function () {
+    $('.invalid-feedback').remove();
+};
+
 var highlightErrors = function (xhr) {
     try {
         var data = JSON.parse(xhr.responseText);
+        clearErrors();
         highlightFields(data);
-        showSummary(data);
         window.scrollTo(0, 0);
     } catch (e) {
         alert(e);
     }
-};
-
-var showSummary = function (response) {
-    $('#validationSummary').empty().removeClass('hidden');
-
-    var verboseErrors = _.flatten(_.map(response, 'Errors')),
-        errors = [];
-
-    var nonNullErrors = _.reject(verboseErrors, function (error) {
-        return error.ErrorMessage.indexOf('must not be empty') > -1;
-    });
-
-    _.each(nonNullErrors, function (error) {
-        errors.push(error.ErrorMessage);
-    });
-
-    if (nonNullErrors.length !== verboseErrors.length) {
-        errors.push('The highlighted fields are required to submit this form.');
-    }
-
-    var $ul = $('#validationSummary').append('<ul></ul>');
-
-    _.each(errors, function (error) {
-        var $li = $('<li></li>').text(error);
-        $li.appendTo($ul);
-    });
 };
 
 var redirect = function (data) {

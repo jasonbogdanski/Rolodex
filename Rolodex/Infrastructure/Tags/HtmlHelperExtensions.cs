@@ -47,6 +47,7 @@ public static class HtmlHelperExtensions
 
         var divTag = new HtmlTag("div");
         divTag.AddClass("mb-3");
+        divTag.AddClass("form-group");
 
         var labelTag = helper.Label(expression);
         labelModifier(labelTag);
