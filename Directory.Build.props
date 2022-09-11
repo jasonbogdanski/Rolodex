@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Jason Bogdanski</Authors>
+    <RepositoryUrl>https://github.com/jasonbogdanski/Rolodex</RepositoryUrl>
+    <TargetFramework>net6.0</TargetFramework>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+</Project>
