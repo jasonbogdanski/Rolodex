@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rolodex", "Rolodex\Rolodex.csproj", "{C6DB1AFC-7264-4FA1-BEEB-5EC46BA3BCF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rolodex.Web", "Rolodex.Web\Rolodex.Web.csproj", "{C6DB1AFC-7264-4FA1-BEEB-5EC46BA3BCF1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rolodex.IntegrationTests", "Rolodex.IntegrationTests\Rolodex.IntegrationTests.csproj", "{D4354652-E276-49B3-A134-3BC6932FC776}"
 EndProject

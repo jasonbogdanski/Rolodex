@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using Rolodex.Models;
-using Rolodex.Pages.Employee;
-using Index = Rolodex.Pages.Employee.Index;
+using Rolodex.Web.Models;
+using Rolodex.Web.Pages.Employee;
+using Index = Rolodex.Web.Pages.Employee.Index;
 
 namespace Rolodex.IntegrationTests.Pages.Employee;
 

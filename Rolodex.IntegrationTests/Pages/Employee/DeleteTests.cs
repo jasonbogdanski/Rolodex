@@ -1,7 +1,7 @@
-﻿using Rolodex.Pages.Employee;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Rolodex.Models;
+using Rolodex.Web.Models;
+using Rolodex.Web.Pages.Employee;
 
 namespace Rolodex.IntegrationTests.Pages.Employee;
 

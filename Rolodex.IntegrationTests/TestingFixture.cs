@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Rolodex.DataStore;
-using Rolodex.Models;
+using Rolodex.Web.DataStore;
+using Rolodex.Web.Models;
 
 namespace Rolodex.IntegrationTests;
 

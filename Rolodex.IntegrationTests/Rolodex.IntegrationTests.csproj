@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Rolodex\Rolodex.csproj" />
+	  <ProjectReference Include="..\Rolodex.Web\Rolodex.Web.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -21,7 +21,7 @@ task Info -description "Display runtime information" {
 task Migrate-TestDatabase -alias mtd -description "Recreate the testing database" {
     exec { dotnet grate `
             -c "Server=(localdb)\mssqllocaldb;Database=Rolodex-Test;Trusted_Connection=True;MultipleActiveResultSets=True;" `
-            -f "Rolodex\DatabaseScripts" `
+            -f "Rolodex.Web\DatabaseScripts" `
             --silent `
             --drop `
     }
@@ -38,13 +38,13 @@ task Compile -depends Info -description "Compile the solution" {
 
 task Publish -depends Compile -description "Publish the primary projects for distribution" {
     remove-directory-silently $publish
-    exec { publish-project } -workingDirectory Rolodex
+    exec { publish-project } -workingDirectory Rolodex.Web
 }
 
 task Migrate-Database -alias md -description "Migrate the changes into the runtime database" {
     exec { dotnet grate `
             -c "Server=(localdb)\mssqllocaldb;Database=Rolodex;Trusted_Connection=True;MultipleActiveResultSets=True;" `
-            -f "Rolodex\DatabaseScripts" `
+            -f "Rolodex.Web\DatabaseScripts" `
             --silent `
     } 
 }
@@ -52,7 +52,7 @@ task Migrate-Database -alias md -description "Migrate the changes into the runti
 task Rebuild-Database -alias rd -description "Drop and re-create the local runtime database" {
     exec { dotnet grate `
             -c "Server=(localdb)\mssqllocaldb;Database=Rolodex;Trusted_Connection=True;MultipleActiveResultSets=True;" `
-            -f "Rolodex\DatabaseScripts" `
+            -f "Rolodex.Web\DatabaseScripts" `
             --silent `
             --drop `
     }
