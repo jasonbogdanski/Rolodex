@@ -26,7 +26,6 @@ var highlightErrors = function (xhr) {
         window.scrollTo(0, 0);
     } catch (e) {
         alert(e);
-        // (Hopefully) caught by the generic error handler in `config.js`.
     }
 };
 
