@@ -13,6 +13,12 @@
       "commands": [
         "grate"
       ]
+    },
+    "gitversion.tool": {
+      "version": "5.10.3",
+      "commands": [
+        "dotnet-gitversion"
+      ]
     }
   }
 }

@@ -1,0 +1,43 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+on:
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ development ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup dotnet 6.0
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.100'
+
+    - name: Setup Required Build Dependencies
+      run: pwsh .\setup.ps1
+
+    - name: Build and Test
+      shell: pwsh
+      run: |
+        invoke-psake ci -properties ${'version':'${{ steps.gitversion.outputs.semVer }}'}
+
+    - name: Upload Website Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: website
+        path: publish
+
+    - name: Upload Test Result Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: test-results
+        path: TestResults
