@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NServiceBus;
+using Rolodex.IntegrationTests.Fakes;
 using Rolodex.Web.DataStore;
+using Rolodex.Web.Infrastructure;
 using Rolodex.Web.Models;
 
 namespace Rolodex.IntegrationTests;
@@ -34,14 +37,31 @@ public class TestingFixture
         {
             builder.ConfigureServices(services =>
             {
-                var descriptor = services.SingleOrDefault(
+                var dbContextDescriptor = services.SingleOrDefault(
                     d => d.ServiceType ==
                          typeof(DbContextOptions<RolodexContext>));
 
-                if (descriptor != null) services.Remove(descriptor);
+                if (dbContextDescriptor != null) services.Remove(dbContextDescriptor);
 
                 services.AddDbContext<RolodexContext>(options =>
                     options.UseSqlServer(ConnectionString));
+
+                var messageSessionDescriptor = services.SingleOrDefault(
+                    d => d.ServiceType ==
+                         typeof(IMessageSession));
+
+                if (messageSessionDescriptor != null) services.Remove(messageSessionDescriptor);
+
+                services.AddScoped<IMessageSession, MessageSessionFake>();
+
+                var guidGeneratorDescriptor = services.SingleOrDefault(
+                    d => d.ServiceType ==
+                         typeof(IGuidGenerator));
+
+                if (guidGeneratorDescriptor != null) services.Remove(guidGeneratorDescriptor);
+
+                services.AddSingleton<IGuidGenerator, TestGuidGenerator>();
+
             });
 
             builder.ConfigureTestServices(services =>

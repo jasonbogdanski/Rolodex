@@ -6,7 +6,7 @@ using NServiceBus;
 var host = Host.CreateDefaultBuilder(args)
     .UseNServiceBus(context =>
     {
-        var endpointConfiguration = new EndpointConfiguration("RolodexEmail");
+        var endpointConfiguration = new EndpointConfiguration("Rolodex.Email");
 
         endpointConfiguration.UseTransport<LearningTransport>();
 

@@ -2,7 +2,7 @@
 
 namespace Rolodex.Messages
 {
-    public record SendEmail : IEvent
+    public record SendEmail : ICommand
     {
         public string ToEmailAddress { get; init; } = null!;
         public string Subject { get; init; } = null!;

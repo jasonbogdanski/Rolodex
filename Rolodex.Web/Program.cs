@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using NServiceBus;
+using Rolodex.Messages;
 using Rolodex.Web.DataStore;
 using Rolodex.Web.Infrastructure;
 using Rolodex.Web.Infrastructure.Tags;
@@ -27,7 +28,10 @@ void RegisterServices(WebApplicationBuilder webApplicationBuilder)
     {
         var endpointConfiguration = new EndpointConfiguration("Rolodex.Web");
 
-        endpointConfiguration.UseTransport<LearningTransport>();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(SendEmail), "Rolodex.Email");
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
@@ -39,7 +43,6 @@ void RegisterServices(WebApplicationBuilder webApplicationBuilder)
         return endpointConfiguration;
     });
 
-// Add services to the container.
     webApplicationBuilder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         .AddMicrosoftIdentityWebApp(webApplicationBuilder.Configuration.GetSection("AzureAd"));
 
@@ -73,6 +76,8 @@ void RegisterServices(WebApplicationBuilder webApplicationBuilder)
     });
 
     webApplicationBuilder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
+    webApplicationBuilder.Services.AddSingleton<IGuidGenerator, GuidGenerator>();
 }
 
 void ConfigureApplication(WebApplication webApplication)

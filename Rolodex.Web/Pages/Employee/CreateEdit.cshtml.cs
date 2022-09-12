@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Rolodex.Web.DataStore;
 using Rolodex.Web.Infrastructure;
+using Rolodex.Web.Services.Employee;
 using IConfigurationProvider = AutoMapper.IConfigurationProvider;
 
 namespace Rolodex.Web.Pages.Employee
@@ -67,7 +68,7 @@ namespace Rolodex.Web.Pages.Employee
         {
             public MappingProfile()
             {
-                CreateProjection<Web.Models.Employee, Command>();
+                CreateProjection<Models.Employee, Command>();
             }
         }
 
@@ -108,22 +109,27 @@ namespace Rolodex.Web.Pages.Employee
             public string LastName { get; init; } = null!;
             public string JobTitle { get; init; } = null!;
             public string Email { get; init; } = null!;
-            public Web.Models.CompanyBranch CompanyBranch { get; init; } = null!;
+            public Models.CompanyBranch CompanyBranch { get; init; } = null!;
         }
 
         public class CommandHandler : IRequestHandler<Command, int>
         {
             private readonly RolodexContext _context;
+            private readonly IMediator _mediator;
 
-            public CommandHandler(RolodexContext context) => _context = context;
+            public CommandHandler(RolodexContext context, IMediator mediator)
+            {
+                _context = context;
+                _mediator = mediator;
+            }
 
             public async Task<int> Handle(Command message, CancellationToken token)
             {
-                Web.Models.Employee employee;
+                Models.Employee employee;
 
                 if (message.Id == null)
                 {
-                    employee = new Web.Models.Employee();
+                    employee = new Models.Employee();
                     await _context.Employees.AddAsync(employee, token);
                 }
                 else
@@ -136,6 +142,8 @@ namespace Rolodex.Web.Pages.Employee
                 employee.Handle(message);
 
                 await _context.SaveChangesAsync(token);
+
+                await _mediator.Send(new SendEmployeeVerificationEmail.Command { Id = employee.Id }, token);
 
                 return employee.Id;
             }

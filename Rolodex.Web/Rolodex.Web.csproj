@@ -27,4 +27,8 @@
 		<InternalsVisibleTo Include="Rolodex.IntegrationTests" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Rolodex.Messages\Rolodex.Messages.csproj" />
+	</ItemGroup>
+
 </Project>
