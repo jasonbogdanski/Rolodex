@@ -5,9 +5,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>a0b4c96a-27a8-4fcd-a86a-28687364f8fd</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Communication.Email" Version="1.0.0-beta.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
     <PackageReference Include="NServiceBus" Version="7.7.4" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.1.0" />
     <PackageReference Include="NServiceBus.Heartbeat" Version="3.0.1" />
@@ -16,6 +19,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Rolodex.Messages\Rolodex.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
